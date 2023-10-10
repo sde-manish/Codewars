@@ -5,35 +5,51 @@
 // * url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
 // * url = "https://www.cnet.com"                -> domain name = cnet"
 
-function domainName(url){
-let start = 0;
-let end = 0;
-let dotCounter = 0;
-let domainName = ''
-for(let i = 0; i < url.length; i++){
-    if (url[i] === '.') {
-        dotCounter++;
-        start = end;
-        end =i
-        if (dotCounter == 2) {
-            
-            for(let i = start + 1; i < end; i++){
-                domainName += url.charAt(i)
-            }
-            return domainName;
-        }
-    }
-    if (url[i] === ':') {
-        var colan = i;
-    }
 
-    if (i === url.length -1 && dotCounter < 2) {
-        start = colan + 3;
-        for(let i = start; i < end; i++){
-            domainName += url.charAt(i);
-        }
-        return domainName;
-    }
+// FIRST Solution(failed): 
+// function domainName(url){
+// let start = 0;
+// let end = 0;
+// let dotCounter = 0;
+// let domainName = ''
+// for(let i = 0; i < url.length; i++){
+//     if (url[i] === '.') {
+//         dotCounter++;
+//         start = end;
+//         end =i
+//         if (dotCounter == 2) {
+            
+//             for(let i = start + 1; i < end; i++){
+//                 domainName += url.charAt(i)
+//             }
+//             return domainName;
+//         }
+//     }
+//     if (url[i] === ':') {
+//         var colan = i;
+//     }
+
+//     if (i === url.length -1 && dotCounter < 2) {
+//         start = colan + 3;
+//         for(let i = start; i < end; i++){
+//             domainName += url.charAt(i);
+//         }
+//         return domainName;
+//     }
+//   }
+// }
+// console.log(domainName("http://www.zombie-bites.com"));
+
+// Second solution(passed):
+function domainName(url){
+    url = url.replace('http://','')
+    url = url.replace('https://','')
+    url = url.replace('www.','')
+    
+    let domain = url.split('.')
+    return domain[0]
+    
+    // return url.split('.')[0]
   }
-}
-console.log(domainName("http://www.zombie-bites.com"));
+
+  console.log(domainName("http://www.zombie-bites.com"));
