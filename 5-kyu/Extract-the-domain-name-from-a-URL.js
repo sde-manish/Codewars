@@ -48,7 +48,7 @@ function domainName(url){
     
     let domain = url.split('.')
     return domain[0]
-    
+    // OR
     // return url.split('.')[0]
   }
 
